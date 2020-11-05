@@ -14,27 +14,19 @@
     text-color: cyan;
     color: #4206f8d6;
     }
-    table{
-    border-color: cadetblue;
-    background-color: burlywood;
-    color: black;
+    form{
+      text-align: right;
+    margin-right: 400px;
+    }
+    button{
+
+    margin-right: 107px;
     }
   </style>
 </head>
 <body>
 <h2 style="text-align:center;">Editing DATA
 </h2><hr>
-<div>
-<form method = "post" action = "<?php $_PHP_SELF ?>">
-<table>
-<tr>
-<td>Sno.</td>
-<td>Firstname</td>
-<td>Lastname</td>
-<td>Emloyee ID</td>
-<td>Email</td>
-<td>Update</td>
-</tr>
 <?php
 include("config.php");
 {if (isset($_GET['id'])) 
@@ -52,19 +44,26 @@ $data = mysqli_fetch_array($result);
 print_r($data);
 {
 ?>
-<tr>
-<td><input type="text" value="<?php echo $data['s_no']; ?>"></td>
-<td><input type="text" id="firstname" value="<?php echo $data['firstname']; ?>"></td>
-<td><input type="text" id="lastname" value="<?php echo $data['lastname']; ?>"></td>
-<td><input type="text" id="employeeid" value="<?php echo $data['employeeid'];?>"></td>
-<td><input type="text" id="email" value="<?php echo $data['email']; ?>"></td>
-<td><a href="update.php?id=<?php echo $data['s_no']; ?>" target="_blank">Update</a></td>
-</tr>
+<form action="update.php"  method="POST">
+<div>
+    <label for="firstname">Firstname</label>
+    <input type="text" name="firstname" id="firstname" value="<?php echo $data['firstname']; ?>">
+    </div>
+    <div>
+    <label for="lastname">lastname</label>
+    <input type="text" name="lastname" id="lastname" value="<?php echo $data['lastname']; ?>">
+    <div>
+    <label for="employeeid">EmployeeID</label>
+    <input type="text" name="employeeid" id="employeeid" value="<?php echo $data['employeeid']; ?>">
+    </div>
+    <div>    
+    <label for="email">email</label>
+    <input type="text" name="email" id="email" value="<?php echo $data['email']; ?>">
+    </div><br>
+    <button type="submit">Update</button>
+</form>
 <?php
 }
 ?>
-</table>
-</form>
-</div>
 </body>
 </html>

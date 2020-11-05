@@ -1,17 +1,18 @@
 <?php
 include "config.php";
-{$id = $_GET['id'];
-print_r($id);
+if(isset($_GET['id']))
+{ $id = $_GET['id'];}
 if($_SERVER['REQUEST_METHOD'] == 'POST')
-        $id = $_POST['s_no'];
-        $firstname = $_GET['firstname'];
-        $lastname = $_GET['lastname'];
-        $employeeid = $_GET['employeeid'];
-        $email = $_GET['email'];
+{
+        $id = $_POST["id"];
+        $firstname = $_POST["firstname"];
+        $lastname = $_POST["lastname"];
+        $employeeid = $_POST["employeeid"];
+        $email = $_POST["email"];
 }
-$sql = "UPDATE `company` SET `firstname` = '$firstname', `lastname` = '$lastname' , `employeeid` = 
-'$employeeid', `email` = '$email' WHERE `s_no` ='$id'";
-    print_r($sql);
+{$sql = "UPDATE `company` SET `firstname` = '$firstname', `lastname` = '$lastname' ,
+`employeeid` = '$employeeid' , `email` = '$email' WHERE s_no='$id'";
+print_r($sql);
     if($result = mysqli_query($conn, $sql));
       {
         echo "Record Updated Successfully";
@@ -20,7 +21,9 @@ $sql = "UPDATE `company` SET `firstname` = '$firstname', `lastname` = '$lastname
       {
         header ("location:/Crud/update.php");
       }
-?>
+      
+    }
+      ?>
 
 
 <!-- if ($_SERVER['REQUEST_METHOD'] == 'POST'){ 

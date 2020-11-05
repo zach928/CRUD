@@ -77,7 +77,7 @@ while($data = mysqli_fetch_array($result))
     <td><?php echo $data['employeeid']; ?></td>
     <td><?php echo $data['email']; ?></td>
     <td><a href="delete.php?delete_id=<?php echo $data['s_no']; ?>" target="_self">Delete</a></td>
-    <td><a href="edit.php?id=<?php echo $data['s_no']; ?>" target="_parent">Update</a></td>
+    <td><a href="edit.php?id=<?php echo $data['s_no']; ?>" target="_parent">Edit</a></td>
   </tr>	
 <?php
 }
