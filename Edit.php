@@ -15,8 +15,8 @@
     color: #4206f8d6;
     }
     form{
-      text-align: right;
-    margin-right: 400px;
+    
+    
     }
     button{
 
@@ -25,43 +25,46 @@
   </style>
 </head>
 <body>
-<h2 style="text-align:center;">Editing DATA
+<h2 style="margin-left:400px;">UPDATE YOUR DATA
+<div>
+<div class="name1"> <label value="<?php echo $data['firstname']; ?>"></label></div>
+</div>
 </h2><hr>
 <?php
 include("config.php");
-{if (isset($_GET['id'])) 
- $id = $_GET['id'];
- print_r($id);
+{if (isset($_GET['update_id'])) 
+ $id = $_GET['update_id'];
 }
 $sql= "select * from company WHERE s_no='$id'"; // fetch data from database
 $result = mysqli_query($conn, $sql);
-print_r($sql);
-
 {
   echo "";
 }
 $data = mysqli_fetch_array($result);
-print_r($data);
 {
 ?>
-<form action="update.php"  method="POST">
-<div>
-    <label for="firstname">Firstname</label>
+<form action="update.php" id="editmodal" style="margin-left: 400px;" method="POST" >
+    <div>
+    <label for="s_no">S no</label><br>
+    <input type="text" name="s_no" id="s_no" value="<?php echo $data['s_no']; ?>" >
+    </div>
+    <div>
+    <label for="firstname">Update your Firstname</label><br>
     <input type="text" name="firstname" id="firstname" value="<?php echo $data['firstname']; ?>">
     </div>
     <div>
-    <label for="lastname">lastname</label>
+    <label for="lastname">Update yourlastname</label><br>
     <input type="text" name="lastname" id="lastname" value="<?php echo $data['lastname']; ?>">
     <div>
-    <label for="employeeid">EmployeeID</label>
+    <label for="employeeid">Update your EmployeeID</label><br>
     <input type="text" name="employeeid" id="employeeid" value="<?php echo $data['employeeid']; ?>">
     </div>
     <div>    
-    <label for="email">email</label>
+    <label for="email">Update your email</label><br>
     <input type="text" name="email" id="email" value="<?php echo $data['email']; ?>">
-    </div><br>
-    <button type="submit">Update</button>
-</form>
+    </div>
+    <button type="submit" action="update.php">Update</button>
+    </form>
 <?php
 }
 ?>
