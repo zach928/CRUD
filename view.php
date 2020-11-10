@@ -4,49 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Records</title>
-    <style>
-    body{
-      display: block;
-    text-align: start;
-    margin-left: 8px;
-    font-style: oblique;
-    font-color: red;
-    text-color: cyan;
-    color: #4206f8d6;
-    }
-    table{
-    border-color: cadetblue;
-    background-color: burlywood;
-    color: black;
-    }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <body >
-<h2 style="margin-left:400px;">INSERT YOUR DATA</h2><hr>
+<div class="container">
+<h2>INSERT YOUR DATA</h2><hr>
 
-    <form action="controller.php" id="ID" style="margin-left: 400px;" method="POST" >
-    <div>
+<form action="controller.php" id="ID"  method="POST" class="was-validated">
+    <div class="form-group">
     <label for="firstname">Firstname</label><br>
-    <input type="text" name="firstname" id="firstname"><br>
-    </div>
-    <div>
+    <div class="row"><div class="col-4"><input type="text" class="form-control"  id="firstname" name="firstname"required ></div><br>
+    </div> </div>
+    <div class="form-group">
     <label for="lastname">lastname</label><br>
-    <input type="text" name="lastname" id="lastname"><br>
-    <div>
+    <div class="row"><div class="col-4"><input type="text" class="form-control" name="lastname"required id="lastname"></div></div><br>
+    <div class="form-group">
     <label for="employeeid">EmployeeID</label><br>
-    <input type="text" name="employeeid" id="employeeid"><br>
+    <div class="row"><div class="col-4"><input type="text" class="form-control" name="employeeid"required id="employeeid"></div></div><br>
     </div>
-    <div>    
+    <div class="form-group">    
     <label for="email">email</label><br>
-    <input type="text" name="email" id="email"><br>
+    <div class="row"><div class="col-4"><input type="text" class="form-control" name="email"required id="email"></div></div><br>
     </div>
-    <button type="submit">Submit</button>
+    <div class="btn-grp">
+    <button class="btn btn-primary" type="submit">Submit</button></div>
     </form>
-<h2>INSERTED DATA</h2>
+<h2>EMPLOYEE DATA</h2>
 
-<table border=2px solid;
-      cellpadding=5; 
-      cellspacing=3;>
+<table class="table table-hover table-bordered">
   <tr>
     <td>SNo.</td>
     <td>Fistname</td>
@@ -69,19 +56,20 @@ if(mysqli_num_rows($result) > 0)
 while($data = mysqli_fetch_array($result))
 {
 ?>
-
-  <tr>
+<tr>
     <td><?php echo $data['s_no']; ?></td>
     <td><?php echo $data['firstname']; ?></td>
     <td><?php echo $data['lastname']; ?></td>    
     <td><?php echo $data['employeeid']; ?></td>
     <td><?php echo $data['email']; ?></td>
-    <td><a href="delete.php?delete_id=<?php echo $data['s_no']; ?>" target="_self">Delete</a></td>
-    <td><a href="edit.php?update_id=<?php echo $data['s_no']; ?>" target="_self">Edit</a></td>
+    <td style="text-align: center;"><a class="fas fa-trash" style='font-size:22px;color:red' role="button" href="delete.php?delete_id=<?php echo $data['s_no']; ?>" target="_self"></a></td>
+    <div>
+    <td style="text-align: center;"><a class="fas fa-edit" style="font-size:22px;color:#3333cc" role="button" href="edit.php?update_id=<?php echo $data['s_no']; ?>" target="_self"></a></td>
   </tr>	
 <?php
 }
 ?>
 </table>
+</div>
 </body>
 </html>
